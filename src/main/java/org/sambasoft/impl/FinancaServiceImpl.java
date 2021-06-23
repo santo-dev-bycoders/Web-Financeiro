@@ -24,12 +24,6 @@ public class FinancaServiceImpl implements FinanceService {
 	}
 
 	@Override
-	public void update(Finance finance) {
-		RestTemplate restTemplate = new RestTemplate();
-		restTemplate.put(UPDATE_ROUTE_ENDPOINT_URL, finance);
-	}
-
-	@Override
 	public void create(List<Finance> listFinance) {
 			RestTemplate restTemplate = new RestTemplate();
 			restTemplate.postForLocation(CREATE_ROUTE_ENDPOINT_URL, listFinance, Finance.class);
