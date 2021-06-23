@@ -58,32 +58,44 @@ public class FinanceController {
 
 
 
-    @RequestMapping(value = "/salvar-financa", method = RequestMethod.POST)
-    public String saveRoute(@RequestParam("file")MultipartFile file) throws ParseException {
-
-        String baseDir= System.getProperty("user.dir") + "/upload/";
+    public void upload(String diretorio, MultipartFile multipartFile){
         try {
-            file.transferTo(new File(baseDir+ file.getOriginalFilename()));
+            multipartFile.transferTo(new File(diretorio+ multipartFile.getOriginalFilename()));
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
 
+    public Date converterDate(String date) throws ParseException {
+        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+        String day=date.substring(6,8);
+        String month=date.substring(4,6);
+        String year=date.substring(0,4);
+        Date newDate=simpleDateFormat.parse(day+"/"+month+"/"+year);
+        return newDate;
+    }
 
+    @RequestMapping(value = "/salvar-financa", method = RequestMethod.POST)
+    public String saveRoute(@RequestParam("file")MultipartFile multipartFile) throws ParseException {
+
+        String diretorio= System.getProperty("user.dir") + "/upload/";
+        List<Finance> listFinance=new ArrayList<Finance>();
+        Transacts transacts=new Transacts();
+
+        upload(diretorio, multipartFile);
 
         String linha=new String();
-        File file2=new File(baseDir+ file.getOriginalFilename());
+        File file=new File(diretorio+ multipartFile.getOriginalFilename());
         FileReader leitorArquivo= null;
         try {
-            leitorArquivo = new FileReader("C:\\CNAB.txt");
+            leitorArquivo = new FileReader(diretorio+ multipartFile.getOriginalFilename());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        BufferedReader bufferedReader=new BufferedReader(leitorArquivo);
-        List<Finance> listFinance=new ArrayList<Finance>();
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        Transacts transacts=new Transacts();
 
-        if(file2.exists()){
+        BufferedReader bufferedReader=new BufferedReader(leitorArquivo);
+
+        if(file.exists()){
             while (true) {
                 Finance finance=new Finance();
                 try {
@@ -111,14 +123,9 @@ public class FinanceController {
     }
 
 
-    public Date converterDate(String date) throws ParseException {
-        SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
-        String day=date.substring(6,8);
-        String month=date.substring(4,6);
-        String year=date.substring(0,4);
-        Date newDate=simpleDateFormat.parse(day+"/"+month+"/"+year);
-        return newDate;
-    }
+
+
+
 
 
 
