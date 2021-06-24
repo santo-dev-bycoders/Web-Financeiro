@@ -100,7 +100,7 @@ public class FinanceController {
     @RequestMapping(value = "/salvar-financa", method = RequestMethod.POST)
     public String saveRoute(@RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) throws ParseException {
 
-        String diretorio= System.getProperty("user.dir") + "/upload/";
+        String diretorio= System.getProperty("user.dir") + "/images/";
         List<Finance> listFinance=new ArrayList<Finance>();
         Transacts transacts=new Transacts();
 
