@@ -15,9 +15,13 @@ Para acessar o Web-Financeiro temos url local: http://localhost:3333/visualizar-
 - (POST): /transact/findById{id}
 - (GET): /transact/findAll
 
-###Arquitetura:
-Arquitetura utilizada para o desenvolvimento do projecto foi a arquitetura em camada onde todo mapeamento é feito pelo
-"controller", passando pela interface "service" e todos métodos implementados pelo "impl".
+###Testes Unitários:
+Para os testes unitários foram feitas quatros testes de unidade simples com Junit reaproveitando alguns métodos implementados na classe FinanceserviceImpl:
+- verificarListaPrenchida: Esse método verifica se existem elementos preenchidos na base de dados.
+- calcularSaldo: Faz um somátorio de quanto de saldo tem e depois faz a comparação com um valor colocado com parametro.
+- verificarListaVazia: Veifica se exite elementos na lista.
+- pesquisaFinancaPorId : Faz uma busca de um elemento na base de dados por id.
+
 
 ### Tecnologias ou Ferramentas Utilizadas:
 - Linguagem: Java </br>
@@ -27,7 +31,17 @@ Arquitetura utilizada para o desenvolvimento do projecto foi a arquitetura em ca
 - IDE: Intellij </br>
 - ORM: Hibernate </br>
 - Estilo: CSS puro </br>
-- Estrutura: HTML 5 </br>
+- Teste Unitário: Junit
+- Documento API: Swagger</br>
 
-
-<img src="images/arquiteturaProject.JPG">
+### Classes e Entidades:
+Para o nosso Diagrama Entidade e Relacionamento temos duas entidades (transact e finance) normalizadas com relacionamentos um para muitos geradas apartir de classes Java com ORM Hibernate. 
+- Finance
+- Transact
+### Funcionamento da Aplicação
+ Para armazenar os dados do ficheiro na base de dados temos os seguintes passos:
+- Escolher ou selecionar o ficheiro em qualquer parte do computador</br>
+- Clicar no botão Adicionar para fazer o upload do arquivo no projeto
+- Se nenhum arquivo for adiciondo no projeto ou nenhum upload feito, aparece uma notificação
+    
+<img src="images/arquiteturaProject.JPG" width="300px">
