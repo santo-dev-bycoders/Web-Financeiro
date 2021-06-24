@@ -60,7 +60,7 @@ public class FinanceController {
 
     @PostMapping("/upload")
     public String upload(@RequestParam("file")MultipartFile file){
-        String baseDir= System.getProperty("user.dir") + "/upload/";
+        String baseDir= System.getProperty("user.dir") + "/images/";
         try {
             file.transferTo(new File(baseDir+ file.getOriginalFilename()));
         } catch (IOException e) {
