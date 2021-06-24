@@ -60,5 +60,5 @@ Para o nosso Diagrama Entidade e Relacionamento temos duas entidades (transact e
 - Se nenhum arquivo for adiciondo no projeto ou nenhum upload feito, aparece uma notificação
 - 
 ### Print das Telas
-<img src="images/arquiteturaProject.JPG"></br>
-<img src="images/print.JPG"">
+<img src="images/arquiteturaProject.JPG"></br></br>
+<img src="images/print.JPG"></br>
