@@ -35,7 +35,7 @@ public class TransactServiceImpl implements TransactService {
 	@Override
 	public List<Transacts> findAll() {
 		RestTemplate restTemplate = new RestTemplate();
-		List<Transacts> list = restTemplate.getForObject(CREATE_TRANSACT_ENDPOINT_URL, List.class);
+		List<Transacts> list = restTemplate.getForObject(GET_TRANSACTS_ENDPOINT_URL, List.class);
 		return list;
 	}
 
