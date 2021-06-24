@@ -15,4 +15,6 @@ public interface FinanceService {
 
 	public List<Finance> findAll();
 
+	public int totalizingBalance();
+
 }

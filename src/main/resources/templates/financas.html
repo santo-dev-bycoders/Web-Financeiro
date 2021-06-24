@@ -25,7 +25,9 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4 borda">
-                         <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-code"></i>  Teste de Programação "ByCoders"</h1>
+                         <h1 class="h3 mb-0 text-gray-800"><i class="fa fa-code"></i>  Teste de Programação "ByCoders"</h1></br>
+                         <span style="color:#ffff;font-family:sans-serif;font-size:14px;" th:text="${message}"></span>
+
                     </div>
 
                     </br>
@@ -40,10 +42,11 @@
                                         <div class="table-responsive">
                                              <div style="margin-left:500px;">
                                              <form th:action="@{/salvar-financa}" method="post" enctype="multipart/form-data">
-                                                <input th:type="file" name="file" >
-                                                <input th:type="submit" th:value="Adicionar" style="cursor:pointer;border-radius:5px;background-color: #009879;color:#ffffff;height:30px;width:120px;">
+                                                <input th:type="file" name="file" id="myFile" >
+                                                <input th:type="submit" id="btnAdicionar" th:value="Adicionar" style="cursor:pointer;border-radius:5px;background-color: #009879;color:#ffffff;height:30px;width:120px;">
                                              </form>
                                              </div>
+                                             <div id="messageFile"><i class="fa fa-file-word"></i> Nenhum Ficheiro Selecionado</div>
                                              <table class="table table-bordered styled-table" id="dataTable" width="100%">
                                                   <thead>
                                                   <tr>
@@ -83,6 +86,7 @@
           </div>
           <!-- End of Main Content -->
 
+
           <!-- Footer -->
           <footer class="sticky-footer bg-white">
                <div class="d-sm-flex align-items-center justify-content-between mb-4 borda">
@@ -102,10 +106,8 @@
 
 <!-- Bootstrap core JavaScript-->
 <script src="/vendor/jquery/jquery.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-<!-- Core plugin JavaScript-->
 <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+<script th:src="@{/js/validationFile.js}"></script>
 
 </body>
 </html>

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -36,12 +37,27 @@ public class FinanceController {
         this.financeService = financeService;
     }
 
+    public FinanceController() {
+    }
+
 
     @GetMapping("/visualizar-financas")
-    public String getAllRoutes(Model model){
+    public String getAllFinances(Model model,RedirectAttributes redirectAttributes){
+
         List<Finance> finances = financeService.findAll();
         model.addAttribute("finances", finances);
+        //redirectAttributes.addFlashAttribute("message","Totalizador de Saldo na Conta "+totalizingBalance());
+        //System.out.println("Totalizador de Saldo na Conta ="+totalizingBalance());
         return "financas";
+    }
+
+    public int totalizingBalance(){
+        Integer countValue=financeService.totalizingBalance();
+        if(countValue.equals(null)) {
+            return 0;
+        }else{
+            return countValue;
+        }
     }
 
     @PostMapping("/upload")
@@ -76,7 +92,7 @@ public class FinanceController {
     }
 
     @RequestMapping(value = "/salvar-financa", method = RequestMethod.POST)
-    public String saveRoute(@RequestParam("file")MultipartFile multipartFile) throws ParseException {
+    public String saveRoute(@RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) throws ParseException {
 
         String diretorio= System.getProperty("user.dir") + "/upload/";
         List<Finance> listFinance=new ArrayList<Finance>();
@@ -118,7 +134,9 @@ public class FinanceController {
             }
         }
 
+
         financeService.create(listFinance);
+        redirectAttributes.addFlashAttribute("message","Totalizador de Saldo na Conta: "+totalizingBalance());
         return "redirect:/visualizar-financas";
     }
 

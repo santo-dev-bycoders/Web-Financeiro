@@ -13,8 +13,8 @@ public class FinancaServiceImpl implements FinanceService {
 	private static final String GET_FINANCES_ENDPOINT_URL = "http://localhost:8182/finance/findAll";
 	private static final String GET_ROUTE_ENDPOINT_URL =    "http://localhost:8182/finance/findById/";
 	private static final String CREATE_ROUTE_ENDPOINT_URL = "http://localhost:8182/finance/create";
-	private static final String UPDATE_ROUTE_ENDPOINT_URL = "http://localhost:8182/finance/update";
 	private static final String DELETE_ROUTE_ENDPOINT_URL = "http://localhost:8182/finance/delete";
+	private static final String COUNT_FINANCE_ENDPOINT_URL = "http://localhost:8182/finance/countValue";
 	private static RestTemplate restTemplate = new RestTemplate();
 
 	@Override
@@ -41,6 +41,13 @@ public class FinancaServiceImpl implements FinanceService {
 		RestTemplate restTemplate = new RestTemplate();
 		List<Finance> listFinances = restTemplate.getForObject(GET_FINANCES_ENDPOINT_URL, List.class);
 		return listFinances;
+	}
+
+	@Override
+	public int totalizingBalance() {
+		RestTemplate restTemplate = new RestTemplate();
+		int count = restTemplate.getForObject(COUNT_FINANCE_ENDPOINT_URL, Integer.class);
+		return count;
 	}
 
 
