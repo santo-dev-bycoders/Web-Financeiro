@@ -42,12 +42,10 @@ public class FinanceController {
 
 
     @GetMapping("/visualizar-financas")
-    public String getAllFinances(Model model,RedirectAttributes redirectAttributes){
+    public String getAllFinances(Model model){
 
         List<Finance> finances = financeService.findAll();
         model.addAttribute("finances", finances);
-        //redirectAttributes.addFlashAttribute("message","Totalizador de Saldo na Conta "+totalizingBalance());
-        //System.out.println("Totalizador de Saldo na Conta ="+totalizingBalance());
         return "financas";
     }
 
@@ -91,6 +89,14 @@ public class FinanceController {
         return newDate;
     }
 
+    public String converterHour(String hours) throws ParseException {
+        String hour=hours.substring(0,2);
+        String minute=hours.substring(2,4);
+        String second=hours.substring(4,6);
+        String newHour=hour+":"+minute+":"+second;
+        return newHour;
+    }
+
     @RequestMapping(value = "/salvar-financa", method = RequestMethod.POST)
     public String saveRoute(@RequestParam("file")MultipartFile multipartFile, RedirectAttributes redirectAttributes) throws ParseException {
 
@@ -122,12 +128,12 @@ public class FinanceController {
                 if(linha==null){
                     break;
                 }
-                //finance.setType(transacts);
+                finance.setIdType(linha.substring(0, 1));
                finance.setDateFinance(converterDate(linha.substring(1, 9)));
                finance.setValue(Integer.parseInt(linha.substring(9, 19)));
                 finance.setCpf(linha.substring(19, 30));
                 finance.setCard(linha.substring(30, 42));
-                finance.setHour(linha.substring(42, 48));
+                finance.setHour(converterHour(linha.substring(42, 48)));
                 finance.setOwnerStore(linha.substring(48, 62));
                 finance.setNameStore(linha.substring(62, 80));
                 listFinance.add(finance);

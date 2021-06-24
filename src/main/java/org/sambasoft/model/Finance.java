@@ -7,6 +7,7 @@ public class Finance implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private long id;
+	private String idType;
 	private Transacts type;
 	private Date dateFinance;
 	private Integer value;
@@ -90,5 +91,13 @@ public class Finance implements Serializable {
 
 	public void setNameStore(String nameStore) {
 		this.nameStore = nameStore;
+	}
+
+	public String getIdType() {
+		return idType;
+	}
+
+	public void setIdType(String idType) {
+		this.idType = idType;
 	}
 }

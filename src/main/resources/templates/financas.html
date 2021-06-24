@@ -54,6 +54,7 @@
                                                        <th>CPF</th>
                                                        <th>Data</th>
                                                        <th>Cartão</th>
+                                                       <th>Tipo</th>
                                                        <th>Valor</th>
                                                        <th>Hora</th>
                                                        <th>Dono da loja</th>
@@ -66,6 +67,7 @@
                                                        <th th:text="${finance.cpf}"></th>
                                                        <th th:text="${finance.dateFinance}"></th>
                                                        <th th:text="${finance.card}"></th>
+                                                       <th th:text="${finance.type.description}"></th>
                                                        <th th:text="${finance.value}"></th>
                                                        <th th:text="${finance.hour}"></th>
                                                        <th th:text="${finance.ownerStore }"></th>
@@ -89,9 +91,6 @@
 
           <!-- Footer -->
           <footer class="sticky-footer bg-white">
-               <div class="d-sm-flex align-items-center justify-content-between mb-4 borda">
-                    <h3 class="h3 mb-0 text-gray-800"> Copyright &copy; Santo Manuel Russo André 2021</h3>
-               </div>
           </footer>
      </div>
 
